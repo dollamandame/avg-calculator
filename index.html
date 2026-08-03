@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+<title>Average Calculator</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+}
+
+body{
+    margin:0;
+    background:#121212;
+    color:white;
+}
+
+.header{
+    position:sticky;
+    top:0;
+    background:#1e1e1e;
+    padding:12px 18px;
+    border-bottom:2px solid #333;
+    z-index:999;
+}
+
+.resultTitle{
+    color:#9f9f9f;
+    font-size:16px;
+    margin-top:4px;
+}
+
+.result{
+    font-size:38px;
+    font-weight:bold;
+    line-height:1.1;
+}
+
+.container{
+    padding:12px 20px;
+}
+
+label{
+    display:block;
+    margin-top:12px;
+    margin-bottom:6px;
+    font-size:20px;
+    font-weight:bold;
+}
+
+input{
+    width:100%;
+    height:55px;
+    font-size:32px;
+    text-align:center;
+    border:none;
+    border-radius:14px;
+    background:#2a2a2a;
+    color:white;
+    outline:none;
+}
+
+button{
+    width:100%;
+    height:55px;
+    margin-top:20px;
+    border:none;
+    border-radius:14px;
+    font-size:24px;
+    font-weight:bold;
+    background:#2979ff;
+    color:white;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+
+<div class="resultTitle">NEW AVG</div>
+<div id="avg" class="result">0.000</div>
+
+<div class="resultTitle">REMOVAL</div>
+<div id="removal" class="result">0.000</div>
+
+</div>
+
+
+<div class="container">
+
+<label>OLD AVG</label>
+<input id="old" inputmode="decimal" enterkeyhint="next">
+
+<label>LEFT TOP</label>
+<input id="lt" inputmode="decimal" enterkeyhint="next">
+
+<label>RIGHT TOP</label>
+<input id="rt" inputmode="decimal" enterkeyhint="next">
+
+<label>LEFT BOTTOM</label>
+<input id="lb" inputmode="decimal" enterkeyhint="next">
+
+<label>RIGHT BOTTOM</label>
+<input id="rb" inputmode="decimal" enterkeyhint="done">
+
+<button id="clear">CLEAR</button>
+
+</div>
+
+
+<script>
+
+const inputs = Array.from(document.querySelectorAll("input"));
+
+
+inputs.forEach((box,index)=>{
+
+    box.addEventListener("keydown",function(e){
+
+        if(e.key === "Enter"){
+
+            e.preventDefault();
+
+            if(index < inputs.length-1){
+                inputs[index+1].focus();
+            }
+
+        }
+
+    });
+
+
+    box.addEventListener("input",calculate);
+
+});
+
+
+
+function num(id){
+
+    let value = parseFloat(document.getElementById(id).value);
+
+    return isNaN(value) ? 0 : value;
+
+}
+
+
+
+// removes extra decimals without rounding
+function truncate3(value){
+
+    return Math.trunc(value * 1000) / 1000;
+
+}
+
+
+
+function calculate(){
+
+    let avg =
+    (
+        num("lt") +
+        num("rt") +
+        num("lb") +
+        num("rb")
+    ) / 4;
+
+
+    let removal = num("old") - avg;
+
+
+    document.getElementById("avg").textContent =
+        truncate3(avg).toFixed(3);
+
+
+    document.getElementById("removal").textContent =
+        truncate3(removal).toFixed(3);
+
+}
+
+
+
+document.getElementById("clear").addEventListener("click",function(){
+
+    inputs.forEach(function(input){
+        input.value="";
+    });
+
+    calculate();
+
+    inputs[0].focus();
+
+});
+
+
+
+calculate();
+
+</script>
+
+</body>
+</html>
