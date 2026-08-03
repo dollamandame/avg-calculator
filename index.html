@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
 <title>Average Calculator</title>
 
 <style>
@@ -20,8 +23,10 @@ body{
 }
 
 .header{
-    position:sticky;
+    position:fixed;
     top:0;
+    left:0;
+    right:0;
     background:#1e1e1e;
     padding:12px 18px;
     border-bottom:2px solid #333;
@@ -41,7 +46,7 @@ body{
 }
 
 .container{
-    padding:12px 20px;
+    padding:150px 20px 20px;
 }
 
 label{
