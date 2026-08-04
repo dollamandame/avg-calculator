@@ -134,29 +134,36 @@ button{
 
 #presetButton{
     position:absolute;
-    top:175px;
-    right:0;
 
-    width:50px;
-    height:50px;
+    top:165px;
+    right:40px;
+
+    width:56px;
+    height:56px;
 
     margin:0;
     padding:0;
 
-    border:none;
-    border-radius:10px;
+    border:2px solid white;
+    border-radius:50%;
 
-    background:#444;
+    background:#121212;
     color:white;
 
-    font-size:20px;
+    font-size:18px;
     font-weight:bold;
 
-    transition:0.2s;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    transition:background-color .2s, border-color .2s, color .2s;
 }
 
 #presetButton.active{
     background:#4CAF50;
+    border-color:#4CAF50;
+    color:white;
 }
 
 </style>
