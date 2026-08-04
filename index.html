@@ -27,11 +27,16 @@ body{
     top:0;
     left:0;
     right:0;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+
     background:#1e1e1e;
     padding-top:calc(env(safe-area-inset-top) + 12px);
     padding-right:18px;
     padding-bottom:12px;
     padding-left:18px;
+
     border-bottom:2px solid #333;
     z-index:999;
 }
@@ -46,6 +51,26 @@ body{
     font-size:38px;
     font-weight:bold;
     line-height:1.1;
+}
+
+.leftResults{
+    display:flex;
+    flex-direction:column;
+}
+
+.rightResults{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
+    text-align:right;
+}
+
+.rightResults .resultTitle{
+    font-size:14px;
+}
+
+.rightResults .result{
+    font-size:34px;
 }
 
 .container{
@@ -92,11 +117,22 @@ button{
 
 <div class="header">
 
-<div class="resultTitle">NEW AVG</div>
-<div id="avg" class="result">0.000</div>
+    <div class="leftResults">
 
-<div class="resultTitle">REMOVAL</div>
-<div id="removal" class="result">0.000</div>
+        <div class="resultTitle">NEW AVG</div>
+        <div id="avg" class="result">0.000</div>
+
+        <div class="resultTitle">REMOVAL</div>
+        <div id="removal" class="result">0.000</div>
+
+    </div>
+
+    <div class="rightResults">
+
+        <div class="resultTitle">MECHANICAL WEDGE</div>
+        <div id="wedge" class="result">0.000</div>
+
+    </div>
 
 </div>
 
@@ -179,6 +215,17 @@ function calculate(){
         num("rb")
     ) / 4;
 
+let values = [
+    num("rt"),
+    num("rb"),
+    num("lb"),
+    num("lt")
+];
+
+let highest = Math.max(...values);
+let lowest = Math.min(...values);
+
+let wedge = highest - lowest;
 
     let removal = num("old") - avg;
 
@@ -189,6 +236,10 @@ function calculate(){
 
     document.getElementById("removal").textContent =
         truncate3(removal).toFixed(3);
+        
+        
+    document.getElementById("wedge").textContent =
+        truncate3(wedge).toFixed(3);
 
 }
 
