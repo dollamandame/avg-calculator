@@ -138,8 +138,8 @@ button{
     top:155px;
     right:20px;
 
-    width:50px;
-    height:50px;
+    width:60px;
+    height:45px;
 
     margin:0;
     padding:0;
@@ -151,7 +151,7 @@ button{
     color:white;
 
     font-size:25px;
-    font-weight:none;
+    font-weight:bold;
 
     display:flex;
     align-items:center;
@@ -281,7 +281,8 @@ document.getElementById("presetButton").addEventListener("click", function () {
     document.getElementById("rb").value = "10.";
     document.getElementById("lb").value = "10.";
     document.getElementById("lt").value = "10.";
-
+    document.getElementById("old").value = "10.";
+    
     calculate();
     
     document.getElementById("rt").focus();
