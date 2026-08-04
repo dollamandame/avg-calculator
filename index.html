@@ -114,6 +114,8 @@ button{
 </head>
 
 <body>
+    
+<div id="avgPage">
 
 <div class="header">
 
@@ -131,6 +133,11 @@ button{
 
         <div class="resultTitle">MECHANICAL WEDGE</div>
         <div id="wedge" class="result">0.000</div>
+        
+        <button id="finalButton"
+        style="margin-top:10px;background:#ff8c00;height:45px;font-size:18px;">
+        FINAL REMOVAL
+        </button>
 
     </div>
 
@@ -157,6 +164,36 @@ button{
 
 </div>
 
+</div>
+
+<div id="finalPage" style="display:none;">
+
+<div class="header">
+
+<div class="leftResults">
+<div class="resultTitle">S1 REMOVAL</div>
+<div id="s1Display" class="result">0.000</div>
+
+<div class="resultTitle">TOTAL REMOVAL</div>
+<div id="totalDisplay" class="result">0.000</div>
+</div>
+
+<div class="rightResults">
+<div class="resultTitle">S2 REMOVAL</div>
+<div id="s2Display" class="result">0.000</div>
+
+<button id="backButton">AVG SCREEN</button>
+</div>
+
+</div>
+
+<div class="container">
+
+<!-- Inputs go here later -->
+
+</div>
+
+</div>
 
 <script>
 
@@ -257,6 +294,25 @@ document.getElementById("clear").addEventListener("click",function(){
 
 });
 
+function showFinalPage(){
+
+    document.getElementById("avgPage").style.display="none";
+    document.getElementById("finalPage").style.display="block";
+
+}
+
+function showAvgPage(){
+
+    document.getElementById("finalPage").style.display="none";
+    document.getElementById("avgPage").style.display="block";
+
+}
+
+document.getElementById("finalButton")
+.addEventListener("click",showFinalPage);
+
+document.getElementById("backButton")
+.addEventListener("click",showAvgPage);
 
 
 calculate();
