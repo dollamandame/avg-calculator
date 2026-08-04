@@ -135,7 +135,7 @@ button{
 #presetButton{
     position:absolute;
 
-    top:150px;
+    top:155px;
     right:20px;
 
     width:50px;
@@ -275,6 +275,40 @@ button{
 </div>
 
 <script>
+
+let preset10Enabled = false;
+
+function togglePreset10() {
+
+    preset10Enabled = !preset10Enabled;
+
+    document
+        .getElementById("presetButton")
+        .classList.toggle("active", preset10Enabled);
+
+}
+
+document
+    .getElementById("presetButton")
+    .addEventListener("click", togglePreset10);
+    
+function applyPreset10(event) {
+
+    if (!preset10Enabled) return;
+
+    if (event.target.value !== "") return;
+
+    event.target.value = "10.";
+
+}
+
+["rt", "rb", "lb", "lt"].forEach(id => {
+
+    document
+        .getElementById(id)
+        .addEventListener("focus", applyPreset10);
+
+});
 
 const inputs = Array.from(document.querySelectorAll("input"));
 
