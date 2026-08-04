@@ -160,9 +160,8 @@ button{
     transition:background-color .2s, border-color .2s, color .2s;
 }
 
-#presetButton.active{
+#presetButton.flash{
     background:white;
-    border-color:white;
     color:black;
 }
 
@@ -276,38 +275,21 @@ button{
 
 <script>
 
-let preset10Enabled = false;
+document.getElementById("presetButton").addEventListener("click", function () {
 
-function togglePreset10() {
+    document.getElementById("rt").value = "10.";
+    document.getElementById("rb").value = "10.";
+    document.getElementById("lb").value = "10.";
+    document.getElementById("lt").value = "10.";
 
-    preset10Enabled = !preset10Enabled;
-
-    document
-        .getElementById("presetButton")
-        .classList.toggle("active", preset10Enabled);
-
-}
-
-document
-    .getElementById("presetButton")
-    .addEventListener("click", togglePreset10);
+    calculate();
     
-function applyPreset10(event) {
-
-    if (!preset10Enabled) return;
-
-    if (event.target.value !== "") return;
-
-    event.target.value = "10.";
-
-}
-
-["rt", "rb", "lb", "lt"].forEach(id => {
-
-    document
-        .getElementById(id)
-        .addEventListener("focus", applyPreset10);
-
+    document.getElementById("rt").focus();
+    
+    setTimeout(function () {
+        button.classList.remove("flash");
+    }, 1000);
+    
 });
 
 const inputs = Array.from(document.querySelectorAll("input"));
