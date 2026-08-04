@@ -109,6 +109,29 @@ button{
     color:white;
 }
 
+
+.inputRow{
+    display:flex;
+    gap:10px;
+    align-items:center;
+}
+
+.inputRow input{
+    flex:1;
+}
+
+#plusButton{
+    width:60px;
+    height:55px;
+    margin:0;
+    background:#ff9800;
+    color:white;
+    border:none;
+    border-radius:14px;
+    font-size:34px;
+    font-weight:bold;
+}
+
 </style>
 
 </head>
@@ -160,7 +183,7 @@ button{
 
 <label>OLD AVG</label>
 <input id="old" inputmode="decimal" enterkeyhint="done">
-<button id="clear">CLEAR</button>
+
 
 </div>
 
@@ -189,7 +212,27 @@ button{
 
 <div class="container">
 
-<!-- Inputs go here later -->
+<label>INCOMING THICKNESS</label>
+
+<input id="incoming" inputmode="decimal" enterkeyhint="next">
+
+<label>FINAL THICKNESS</label>
+
+<input id="finalThickness" inputmode="decimal" enterkeyhint="next">
+
+<label>S1 REMOVAL</label>
+
+<div class="inputRow">
+
+    <input id="s1Input"
+
+           type="text"
+
+           inputmode="decimal"
+
+           enterkeyhint="done">
+
+    <button id="plusButton" type="button">+</button>
 
 </div>
 
@@ -291,6 +334,25 @@ document.getElementById("clear").addEventListener("click",function(){
     calculate();
 
     inputs[0].focus();
+
+});
+
+const s1Box = document.getElementById("s1Input");
+
+document.getElementById("plusButton").addEventListener("click",function(){
+
+    let text = s1Box.value.trim();
+
+    if(text !== "" && !text.endsWith("+")){
+        s1Box.value = text + "+";
+    }
+
+    s1Box.focus();
+
+    s1Box.setSelectionRange(
+        s1Box.value.length,
+        s1Box.value.length
+    );
 
 });
 
