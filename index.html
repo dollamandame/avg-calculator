@@ -344,6 +344,85 @@ document.getElementById("finalButton")
 document.getElementById("backButton")
 .addEventListener("click",showAvgPage);
 
+const plusButton = document.getElementById("plusButton");
+const s1Box = document.getElementById("s1Input");
+
+if(plusButton && s1Box){
+
+    plusButton.addEventListener("click",function(){
+
+        let text = s1Box.value;
+
+        if(text !== "" && !text.endsWith("+")){
+            s1Box.value = text + "+";
+        }
+
+        s1Box.focus();
+
+        s1Box.setSelectionRange(
+            s1Box.value.length,
+            s1Box.value.length
+        );
+
+    });
+
+}
+
+function parseExpression(value){
+
+    if(value.trim() === ""){
+        return 0;
+    }
+
+    return value
+    .split("+")
+    .reduce(function(total,number){
+
+        return total + (parseFloat(number) || 0);
+
+    },0);
+
+}
+
+function calculateFinal(){
+
+    let incoming =
+    parseFloat(document.getElementById("incoming").value) || 0;
+
+    let finalThickness =
+    parseFloat(document.getElementById("finalThickness").value) || 0;
+
+    let s1 =
+    parseExpression(document.getElementById("s1Input").value);
+
+
+    let total = incoming - finalThickness;
+
+    let s2 = total - s1;
+
+
+    document.getElementById("s1Display").textContent =
+    truncate3(s1).toFixed(3);
+
+    document.getElementById("totalDisplay").textContent =
+    truncate3(total).toFixed(3);
+
+    document.getElementById("s2Display").textContent =
+    truncate3(s2).toFixed(3);
+
+}
+
+["incoming","finalThickness","s1Input"].forEach(function(id){
+
+    let box = document.getElementById(id);
+
+    if(box){
+
+        box.addEventListener("input",calculateFinal);
+
+    }
+
+});
 
 calculate();
 
