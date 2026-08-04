@@ -337,29 +337,7 @@ document.getElementById("clear").addEventListener("click",function(){
 
 });
 
-const plusButton = document.getElementById("plusButton");
-const s1Box = document.getElementById("s1Input");
 
-if (plusButton && s1Box) {
-
-    plusButton.addEventListener("click",function(){
-
-        let text = s1Box.value.trim();
-
-        if(text !== "" && !text.endsWith("+")){
-            s1Box.value = text + "+";
-        }
-
-        s1Box.focus();
-
-        s1Box.setSelectionRange(
-            s1Box.value.length,
-            s1Box.value.length
-        );
-
-    });
-
-}
 
 function showFinalPage(){
 
