@@ -337,24 +337,29 @@ document.getElementById("clear").addEventListener("click",function(){
 
 });
 
+const plusButton = document.getElementById("plusButton");
 const s1Box = document.getElementById("s1Input");
 
-document.getElementById("plusButton").addEventListener("click",function(){
+if (plusButton && s1Box) {
 
-    let text = s1Box.value.trim();
+    plusButton.addEventListener("click",function(){
 
-    if(text !== "" && !text.endsWith("+")){
-        s1Box.value = text + "+";
-    }
+        let text = s1Box.value.trim();
 
-    s1Box.focus();
+        if(text !== "" && !text.endsWith("+")){
+            s1Box.value = text + "+";
+        }
 
-    s1Box.setSelectionRange(
-        s1Box.value.length,
-        s1Box.value.length
-    );
+        s1Box.focus();
 
-});
+        s1Box.setSelectionRange(
+            s1Box.value.length,
+            s1Box.value.length
+        );
+
+    });
+
+}
 
 function showFinalPage(){
 
