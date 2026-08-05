@@ -9,3 +9,6 @@
 - Calculates mechanical wedge by comparing corner differences
 
 - Includes a final removal calculator for multi-step removal processes
+
+## Other Tool
+# [MIDPOINT CALCULATOR](https://dollamandame.github.io/midpoint-calculator/)
