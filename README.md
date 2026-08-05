@@ -1,6 +1,6 @@
 https://dollamandame.github.io/avg-calculator/
 
-Features
+##Features
 
 - Calculates new average thickness from four corner measurements
 
