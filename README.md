@@ -1,4 +1,4 @@
-https://dollamandame.github.io/avg-calculator/
+# [AVERAGE CALCULATOR](https://dollamandame.github.io/avg-calculator/)
 
 ## Features
 
